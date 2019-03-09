@@ -26,6 +26,16 @@ app.get('/users', function(req, res){
 		users: db.get('users').value()
 	});
 })
+app.get('/users/search', function(req, res){
+	var q = req.query.q;
+	var users = db.get('users').value();
+	var searching = users.filter(function(user){
+		return user.name.toLowerCase().indexOf(q.toLowerCase()) >= 0;
+	});
+	res.render('list', {
+		users: searching
+	});
+});
 app.get('/users/create', function(req, res){
 	res.render('create');
 });
