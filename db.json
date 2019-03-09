@@ -1,22 +1,3 @@
 {
-  "users": [
-    {
-      "name": "bbb"
-    },
-    {
-      "name": "bbb"
-    },
-    {
-      "name": "a"
-    },
-    {
-      "name": "a"
-    },
-    {
-      "name": "a"
-    },
-    {
-      "name": "c"
-    }
-  ]
+  "users": []
 }
