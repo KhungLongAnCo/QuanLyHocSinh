@@ -1,5 +1,42 @@
-h1 create user
 
-form(action="/users/create", method="POST")
-	input(type="text", name="name")
-	button Create
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  title
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+  link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.7.2/css/all.css')
+  script(src='https://code.jquery.com/jquery.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+nav.navbar.navbar-inverse(role='navigation')
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/') Khủng Long Ăn Cỏ
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      ul.nav.navbar-nav
+        li.active
+          a(href='/') Home
+        li
+          a(href='/users') List Students
+        li
+          a(href='/users/create') New Student
+.row(style='margin:0 auto; width: 50%')
+  if errors
+    each error in errors 
+      .alert.alert-danger= error
+  form(action='', method='POST', role='form')
+    legend Create New Students
+    .form-group
+      label(for='') Name
+      input.form-control(type='text', name='name', value= value ? value.name : '', placeholder='Name')
+      label(for='') Phone
+      input.form-control(type='text', name='phone', value= value ? value.phone: '', placeholder='Your phone')
+      label(for='') Mã Sinh Viên
+      input.form-control(type='text', name='MSV', value= value ? value.MSV: '', placeholder='')
+      label(for='') Note
+      input.form-control(style='padding:30px', type='text', name='describe', id='', placeholder='')
+    button.btn.btn-primary(type='submit') Create

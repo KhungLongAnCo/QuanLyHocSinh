@@ -3,8 +3,8 @@ head
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible', content='IE=edge')
   title
+  // Latest compiled and minified CSS & JS
   link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
-  link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.7.2/css/all.css')
   script(src='https://code.jquery.com/jquery.js')
   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
 nav.navbar.navbar-inverse(role='navigation')
@@ -15,7 +15,7 @@ nav.navbar.navbar-inverse(role='navigation')
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') Khủng Long Ăn Cỏ
+      a.navbar-brand(href='/') Maneger Student
     .collapse.navbar-collapse.navbar-ex1-collapse
       ul.nav.navbar-nav
         li.active
@@ -24,30 +24,26 @@ nav.navbar.navbar-inverse(role='navigation')
           a(href='/users') List Students
         li
           a(href='/users/create') New Student
-.container.col-md-6(style="float:right")
-  form(action='/users/search', method='get', role='form' )
-    legend Search
-    .form-group.col-md-6
-      input.form-control(type='text', name='q', placeholder='Mã Sinh Viên')
-    button.btn.btn-primary(type='submit') 
-      i.fas.fa-search.fa-1x
-.col-md-6
-table.table.table-hover
-  thead
-    tr
-      th Mã Sinh Viên
-      th Tên
-      th SĐT
-      th Mô tả
-  tbody
-  each user in users
-   tr
-    td= user.MSV
-    td= user.name
-    td= user.phone
-    td 
-     a(href="/users/view/" + user.id)
-      button.btn.btn-primary(type='button') Mô tả
-
-
+.row(style='margin:0 auto; width: 70%')
   
+  h3 Sinh vi&ecirc;n
+  ul
+    li
+      hr
+      b T&ecirc;n : 
+      span= user.name
+    li
+      hr
+      b S&Dstrok;T : 
+      span= user.phone
+    li
+      hr
+      b M&atilde; Sinh Vi&ecirc;n : 
+      span= user.MSV
+    li
+      hr
+      b Ch&uacute; Th&iacute;ch : 
+      span= user.describe
+
+button 
+ a(href="/users")
