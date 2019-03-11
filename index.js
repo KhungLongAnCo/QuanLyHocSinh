@@ -3,12 +3,18 @@ var app = express();
 var bodyParser = require('body-parser');
 var db = require('./lowdb.js');
 var userRouter = require("./router/users.router.js");
+var authRouter = require('./router/auth.login.js');
+var validateLogin = require('./validate/middlewareLogin.js');
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views', 'views');
+app.use("/users", validateLogin.bin,  userRouter);
+app.use('/auth', authRouter);
 
-app.use("/users", userRouter);
 
 app.get('/', function(req, res){
 	res.render('index');

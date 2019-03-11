@@ -5,7 +5,9 @@
       "phone": "1667031442",
       "MSV": "B8414",
       "describe": "perfect",
-      "id": "RH5117HE4"
+      "id": "RH5117HE4",
+      "email": "luankoy2k@gmail.com",
+      "password": "123"
     },
     {
       "name": "thuy",
@@ -13,6 +15,13 @@
       "MSV": "B8424",
       "describe": "beautyful",
       "id": "evVZTiTIX"
+    },
+    {
+      "name": "luankoy",
+      "phone": "1667031442",
+      "MSV": "B8414",
+      "describe": "perfect",
+      "id": "lfyHl-WVP"
     }
   ]
 }

@@ -1,0 +1,30 @@
+
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  title
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+  link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.7.2/css/all.css')
+  script(src='https://code.jquery.com/jquery.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+
+.row(style='margin:0 auto; width: 50%;')
+  if(error)
+    each err in error
+      .alert.alert-danger= error
+  form(action='/auth/login', method='POST', role='form')
+    legend Create New Students
+    .form-group
+      label(for='') Name
+      input.form-control(type='email', name='email' value= value ? value.email : '')
+      label(for='') password
+      input.form-control(type='password', name='password')
+    button.btn.btn-primary(type='submit') Create
+
+
+
+
+  
+
+
+  

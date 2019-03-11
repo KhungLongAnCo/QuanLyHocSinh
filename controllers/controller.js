@@ -23,6 +23,7 @@ module.exports.view = function(req, res){
 	res.render('viewUser', {user});
 }
 module.exports.create = function(req, res){
+	console.log(req.cookies);
 	res.render('create');
 }
 module.exports.createPost = function(req, res){

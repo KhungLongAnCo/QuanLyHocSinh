@@ -24,6 +24,10 @@ nav.navbar.navbar-inverse(role='navigation')
           a(href='/users') List Students
         li
           a(href='/users/create') New Student
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href="/auth/login")
+            u Log out
 .container.col-md-6(style="float:right")
   form(action='/users/search', method='get', role='form' )
     legend Search
