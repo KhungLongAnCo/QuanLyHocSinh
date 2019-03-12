@@ -4,7 +4,6 @@ module.exports.Login = function(req, res, next){
 	var user = req.body;
 	// console.log(user);
 	var combine = db.get('users').find({email: user.email}).value();
-	console.log(combine);
 	if(!combine){
 		error.push('ko có tài khoản này');
 		res.render('login', {error: error, value: user});
@@ -16,10 +15,11 @@ module.exports.Login = function(req, res, next){
 		return;
 	}
 	if(combine.password === user.password){
-		res.cookie('login', 12345);
+		res.cookie('login', combine.id, {
+			signed: true
+		});
 		res.redirect('/users');
 		next();
 	}
 	
-
 }

@@ -26,8 +26,10 @@ nav.navbar.navbar-inverse(role='navigation')
           a(href='/users/create') New Student
       ul.nav.navbar-nav.navbar-right
         li
-          a(href="/auth/login")
-            u Log out
+          a(href="/auth/login" )
+            if(user)
+              u= user.name
+            
 .container.col-md-6(style="float:right")
   form(action='/users/search', method='get', role='form' )
     legend Search
@@ -52,6 +54,6 @@ table.table.table-hover
     td 
      a(href="/users/view/" + user.id)
       button.btn.btn-primary(type='button') Mô tả
-
+h1= user.name
 
   

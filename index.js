@@ -6,7 +6,7 @@ var userRouter = require("./router/users.router.js");
 var authRouter = require('./router/auth.login.js');
 var validateLogin = require('./validate/middlewareLogin.js');
 var cookieParser = require('cookie-parser');
-app.use(cookieParser());
+app.use(cookieParser('doilabekho'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
