@@ -2,7 +2,6 @@ var db = require('../lowdb.js');
 module.exports.Login = function(req, res, next){
 	var error = [];
 	var user = req.body;
-	// console.log(user);
 	var combine = db.get('users').find({email: user.email}).value();
 	if(!combine){
 		error.push('ko có tài khoản này');

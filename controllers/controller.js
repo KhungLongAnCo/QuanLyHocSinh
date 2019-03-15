@@ -1,32 +1,50 @@
 var db = require('../lowdb.js');
 var shortid = require('shortid');
+var User = require('../models/users.model.js');
 module.exports.list = function(req, res){
-	res.render('list', {
-		users: db.get('users').value()
-	});
+	User.find()
+	User.find().exec(function(err, user){
+		res.render('list', {
+			users: user
+		})
+	})
 }
 module.exports.search = function(req, res){
 	var q = req.query.q;
-	var users = db.get('users').value();
-	var searching = users.filter(function(user){
-		return user.MSV.toLowerCase().indexOf(q.toLowerCase()) >= 0;
-	});
-	res.render('list', {
-		users: searching
-	});
+	User.find().exec(function(err, users){
+
+		var searching = users.filter(function(user){
+			return user.MSV.toLowerCase().indexOf(q.toLowerCase()) >= 0;
+		});
+
+		res.render('list', {
+			users: searching
+		});
+
+	})
+	
 }
 module.exports.view = function(req, res){
-	var id = req.params.id;
-	var user = db.get('users')
-	.find({ id: id })
-	.value();
-	res.render('viewUser', {user});
+	var name = req.params.name;
+	console.log(name);
+	// var user = db.get('users')
+	// .find({ id: id })
+	// .value();
+	User.find().exec(function(err, user){
+		var user = user.filter(function(u){
+			return u.name == name;
+		});
+		console.log(user);
+		res.render('viewUser', {users:user});
+	});
+	
 }
 module.exports.create = function(req, res){
 	res.render('create');
 }
 module.exports.createPost = function(req, res){
 	req.body.id = shortid.generate();
+	req.body.avatar = req.file.path.split('\\').slice(1).join('/');
 	db.get('users')
 	.push(req.body)
 	.write()

@@ -34,6 +34,10 @@ nav.navbar.navbar-inverse(role='navigation')
       span= user.name
     li
       hr
+      b Avartar 
+      img(src= user.avatar)
+    li
+      hr
       b S&Dstrok;T : 
       span= user.phone
     li
@@ -44,6 +48,7 @@ nav.navbar.navbar-inverse(role='navigation')
       hr
       b Ch&uacute; Th&iacute;ch : 
       span= user.describe
+
 
 button 
  a(href="/users")

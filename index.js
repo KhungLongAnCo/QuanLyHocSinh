@@ -1,4 +1,5 @@
 var express = require("express");
+
 var app = express();
 var bodyParser = require('body-parser');
 var db = require('./lowdb.js');
@@ -6,13 +7,22 @@ var userRouter = require("./router/users.router.js");
 var authRouter = require('./router/auth.login.js');
 var validateLogin = require('./validate/middlewareLogin.js');
 var cookieParser = require('cookie-parser');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/expressManager');
+// var User = require('./models/users.model.js');
+
+
+app.use(express.static('public'));
 app.use(cookieParser('doilabekho'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views', 'views');
-app.use("/users", validateLogin.bin,  userRouter);
+app.use("/users", 
+	validateLogin.bin,
+	userRouter
+	);
 app.use('/auth', authRouter);
 
 
