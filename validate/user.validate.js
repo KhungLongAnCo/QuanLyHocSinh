@@ -1,7 +1,7 @@
 module.exports.validate = function(req, res, next){
 	var newUser = req.body;
 	var error = [];
-	var reglarPhone = /^([0-9]{10,11})$/;
+	var reglarPhone = /^([0-9]{9,10})$/;
 	if(!newUser.name){
 		error.push('Không được để tên trống');		
 	}
@@ -20,6 +20,5 @@ module.exports.validate = function(req, res, next){
 		res.render('create', {errors: error, value: newUser});
 		return;
 	}
-	res.locals.lol = 'lol'
 	next();
 }

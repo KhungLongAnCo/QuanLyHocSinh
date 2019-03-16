@@ -1,9 +1,8 @@
-var db = require('../lowdb.js');
+// var db = require('../lowdb.js');
 var shortid = require('shortid');
-var User = require('../models/users.model.js');
+var usersModel = require('../models/users.model.js');
 module.exports.list = function(req, res){
-	User.find()
-	User.find().exec(function(err, user){
+	usersModel.find().exec(function(err, user){
 		res.render('list', {
 			users: user
 		})
@@ -11,8 +10,7 @@ module.exports.list = function(req, res){
 }
 module.exports.search = function(req, res){
 	var q = req.query.q;
-	User.find().exec(function(err, users){
-
+	usersModel.find().exec(function(err, users){
 		var searching = users.filter(function(user){
 			return user.MSV.toLowerCase().indexOf(q.toLowerCase()) >= 0;
 		});
@@ -26,16 +24,12 @@ module.exports.search = function(req, res){
 }
 module.exports.view = function(req, res){
 	var name = req.params.name;
-	console.log(name);
-	// var user = db.get('users')
-	// .find({ id: id })
-	// .value();
-	User.find().exec(function(err, user){
+	usersModel.find().exec(function(err, user){
 		var user = user.filter(function(u){
 			return u.name == name;
 		});
 		console.log(user);
-		res.render('viewUser', {users:user});
+		res.render('viewUser', {user :user[0]});
 	});
 	
 }
@@ -44,9 +38,13 @@ module.exports.create = function(req, res){
 }
 module.exports.createPost = function(req, res){
 	req.body.id = shortid.generate();
-	req.body.avatar = req.file.path.split('\\').slice(1).join('/');
-	db.get('users')
-	.push(req.body)
-	.write()
+	// req.body.avatar = req.body.file.path.split('\\').slice(1).join('/')
+	usersModel.create(req.body);
 	res.redirect('/users');
+}
+module.exports.removeUser = function(req, res){
+	var name = req.params.name;
+	usersModel.remove({name: name}).exec(function(err, result){
+		res.redirect('/users');
+	})
 }

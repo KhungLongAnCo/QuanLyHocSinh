@@ -2,14 +2,13 @@ var express = require("express");
 
 var app = express();
 var bodyParser = require('body-parser');
-var db = require('./lowdb.js');
 var userRouter = require("./router/users.router.js");
 var authRouter = require('./router/auth.login.js');
 var validateLogin = require('./validate/middlewareLogin.js');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/expressManager');
-// var User = require('./models/users.model.js');
+
 
 
 app.use(express.static('public'));

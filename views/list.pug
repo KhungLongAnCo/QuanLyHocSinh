@@ -45,6 +45,7 @@ table.table.table-hover
       th Tên
       th SĐT
       th Mô tả
+      th 
   tbody
   each user in users
    tr
@@ -54,5 +55,8 @@ table.table.table-hover
     td
      a(href="/users/view/" + user.name)
       button.btn.btn-primary(type='button') Mô tả
+    td 
+     a(href="/users/remove" + user.name) 
+      button.btn.btn-danger(type='button') Xóa
 
   
