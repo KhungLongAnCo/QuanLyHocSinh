@@ -1,5 +1,4 @@
-// var db = require('../lowdb.js');
-var shortid = require('shortid');
+
 var usersModel = require('../models/users.model.js');
 module.exports.list = function(req, res){
 	usersModel.find().exec(function(err, user){
@@ -23,12 +22,11 @@ module.exports.search = function(req, res){
 	
 }
 module.exports.view = function(req, res){
-	var name = req.params.name;
+	var _id = req.params._id;
 	usersModel.find().exec(function(err, user){
 		var user = user.filter(function(u){
-			return u.name == name;
+			return u._id == _id;
 		});
-		console.log(user);
 		res.render('viewUser', {user :user[0]});
 	});
 	
@@ -37,14 +35,39 @@ module.exports.create = function(req, res){
 	res.render('create');
 }
 module.exports.createPost = function(req, res){
-	req.body.id = shortid.generate();
 	// req.body.avatar = req.body.file.path.split('\\').slice(1).join('/')
 	usersModel.create(req.body);
 	res.redirect('/users');
 }
 module.exports.removeUser = function(req, res){
-	var name = req.params.name;
-	usersModel.remove({name: name}).exec(function(err, result){
+	var _id = req.params._id;
+	usersModel.remove({_id: _id}).exec(function(err, result){
 		res.redirect('/users');
 	})
+}
+module.exports.modifyUser = function(req, res){
+	var _id = req.params._id;
+	usersModel.find().exec(function(err, user){
+		var user = user.filter(function(u){
+			return u._id == _id;
+		});
+			console.log(user[0]);
+		res.render('modifyUser', {user :user[0]});
+	});
+
+}
+
+module.exports.modifyUserPost = function(req, res){
+	var modifyUser = req.body;
+	var _id = req.params._id;
+	usersModel.find().exec(function(err, user){
+		var user = user.filter(function(u){
+			return u._id == _id;
+		});
+		usersModel.update(user[0], modifyUser).exec(function(err, result){
+			
+		});
+	});
+
+	res.redirect('/users/view/' + _id);
 }

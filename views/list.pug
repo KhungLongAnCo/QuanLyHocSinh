@@ -53,10 +53,10 @@ table.table.table-hover
     td= user.name
     td= user.phone 
     td
-     a(href="/users/view/" + user.name)
+     a(href="/users/view/" + user._id)
       button.btn.btn-primary(type='button') Mô tả
     td 
-     a(href="/users/remove" + user.name) 
+     a(href="/users/remove" + user._id) 
       button.btn.btn-danger(type='button') Xóa
 
   

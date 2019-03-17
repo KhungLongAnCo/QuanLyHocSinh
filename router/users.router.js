@@ -10,14 +10,22 @@ var upload = multer({ dest: './public/uploads/' });
 router.use(cookieParser());
 
 router.get('/', controllers.list);
+
 router.get('/search', controllers.search);
-router.get('/view/:name', controllers.view);
+
+router.get('/view/:_id', controllers.view);
 
 router.get('/create', controllers.create);
-router.get('/remove:name', controllers.removeUser);
 router.post('/create',
 	upload.single('avatar'),
 	validateCreatePost.validate,
 	controllers.createPost);
+
+router.get('/remove:_id', controllers.removeUser);
+
+router.get('/modify/:_id', controllers.modifyUser);
+
+router.post('/modify/:_id', controllers.modifyUserPost);
+
 
 module.exports = router;

@@ -29,34 +29,26 @@ body
   
   h3 Sinh vi&ecirc;n
   .col-md-6
-   ul
-    li
-      hr
-      b T&ecirc;n : 
-      span= user.name
-    li
-      hr
-      b Avartar 
-      img(src= user.avatar)
-    li
-      hr
-      b S&Dstrok;T : 
-      span= user.phone
-        
-    li
-      hr
-      b M&atilde; Sinh Vi&ecirc;n : 
-      span= user.MSV
+   form(action="/users/modify/" + user._id, method="POST")
+    label Tên
+    br
+    input(type="text", name="name", value= user.name)
+    br
+    label SĐT
+    br
+    input(type="text",name="phone", value= user.phone)
+    br
+    label Mã Sinh Viên
+    br
+    input(type="text", name="MSV", value= user.MSV)
+    br
+    label Chú Thích
+    br
+    input(type="text", name="note", value= user.note)
+    hr
+    button.btn.btn-success UpDate
 
-    li
-      hr
-      b Ch&uacute; Th&iacute;ch : 
-      span= user.note
-      hr
-   a(href="/users/modify/" + user._id)
-    button(class="btn btn-primary") modify
- button 
-  a(href="/users") ComeBack
+  
 
 
 
