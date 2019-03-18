@@ -2,6 +2,7 @@
 var usersModel = require('../models/users.model.js');
 module.exports.list = function(req, res){
 	usersModel.find().exec(function(err, user){
+		user = user.slice(1, user.length);
 		res.render('list', {
 			users: user
 		})
@@ -51,7 +52,6 @@ module.exports.modifyUser = function(req, res){
 		var user = user.filter(function(u){
 			return u._id == _id;
 		});
-			console.log(user[0]);
 		res.render('modifyUser', {user :user[0]});
 	});
 
@@ -59,7 +59,7 @@ module.exports.modifyUser = function(req, res){
 
 module.exports.modifyUserPost = function(req, res){
 	var modifyUser = req.body;
-	var _id = req.params._id;
+	var _id = req.body._id;
 	usersModel.find().exec(function(err, user){
 		var user = user.filter(function(u){
 			return u._id == _id;
@@ -69,5 +69,6 @@ module.exports.modifyUserPost = function(req, res){
 		});
 	});
 
-	res.redirect('/users/view/' + _id);
+	res.redirect('/users');
+	res.redirect('/users');
 }

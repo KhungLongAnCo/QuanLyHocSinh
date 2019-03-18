@@ -29,6 +29,9 @@ body
   
   h3 Sinh vi&ecirc;n
   .col-md-6
+   if errors
+    each error in errors
+      .alert.alert-danger= error
    form(action="/users/modify/" + user._id, method="POST")
     label Tên
     br
