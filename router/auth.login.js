@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../lowdb.js');
 var loginValidate = require('../validate/login.validate.js');
 
 

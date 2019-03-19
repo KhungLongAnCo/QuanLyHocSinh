@@ -1,5 +1,4 @@
 
-var db = require('../lowdb.js');
 var userModel = require('../models/users.model.js');
 
 module.exports.bin = function(req, res, next){
