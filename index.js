@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views', 'views');
 app.use("/users", 
+	validateLogin.bin,
 	userRouter
 	);
 app.use('/auth', authRouter);
