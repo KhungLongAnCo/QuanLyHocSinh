@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/expressManager');
 
-
+var port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(cookieParser('doilabekho'));
@@ -29,6 +29,6 @@ app.get('/', function(req, res){
 	res.render('index');
 });
 
-app.listen(3000, function(){
+app.listen(port, function(){
 	console.log('server running port 3000');
 });
