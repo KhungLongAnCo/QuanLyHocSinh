@@ -27,7 +27,6 @@ module.exports.Login = function(req, res, next){
 			next();
 		}
 
-	console.log(combine);
 	});
 
 		// console.log(user);
