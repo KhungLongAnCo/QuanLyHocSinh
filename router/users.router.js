@@ -27,7 +27,6 @@ router.get('/remove:_id', controllers.removeUser);
 router.get('/modify/:_id', controllers.modifyUser);
 
 router.post('/modify/:_id',
-validateModifyUser.modify,
  controllers.modifyUserPost);
 
 

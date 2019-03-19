@@ -14,7 +14,14 @@ module.exports.search = function(req, res){
 		var searching = users.filter(function(user){
 			return user.MSV.toLowerCase().indexOf(q.toLowerCase()) >= 0;
 		});
+		// searching.filter(function(loc){
+		// 	if(loc.MSV === 'B8414'){
+		// 		searching = searching.slice(1, searching.length);
+		// 	}
 
+		// 	break;
+		// })
+		
 		res.render('list', {
 			users: searching
 		});
@@ -59,7 +66,7 @@ module.exports.modifyUser = function(req, res){
 
 module.exports.modifyUserPost = function(req, res){
 	var modifyUser = req.body;
-	var _id = req.body._id;
+	var _id = req.params._id;
 	usersModel.find().exec(function(err, user){
 		var user = user.filter(function(u){
 			return u._id == _id;
@@ -69,6 +76,6 @@ module.exports.modifyUserPost = function(req, res){
 		});
 	});
 
-	res.redirect('/users');
-	res.redirect('/users');
+	res.redirect('/users/view/' + _id);
+	res.redirect('/users/view/' + _id);
 }
