@@ -7,7 +7,7 @@ var authRouter = require('./router/auth.login.js');
 var validateLogin = require('./validate/middlewareLogin.js');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/expressManager');
+mongoose.connect('mongodb://localhost/expressManager', { useNewUrlParser: true });
 
 var port = process.env.PORT || 3000;
 
