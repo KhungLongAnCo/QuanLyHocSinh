@@ -1,42 +1,31 @@
 
 var usersModel = require('../models/users.model.js');
-module.exports.list = function(req, res){
-	usersModel.find().exec(function(err, user){
-		user = user.slice(1, user.length);
+module.exports.list = async function(req, res){
+	var user = await usersModel.find()
+	user = user.slice(1, user.length);
 		res.render('list', {
 			users: user
 		})
-	})
 }
-module.exports.search = function(req, res){
+module.exports.search = async function(req, res){
 	var q = req.query.q;
-	usersModel.find().exec(function(err, users){
-		var searching = users.filter(function(user){
-			return user.MSV.toLowerCase().indexOf(q.toLowerCase()) >= 0;
-		});
-		// searching.filter(function(loc){
-		// 	if(loc.MSV === 'B8414'){
-		// 		searching = searching.slice(1, searching.length);
-		// 	}
-
-		// 	break;
-		// })
-		
+	var users = await usersModel.find();
+	var searching = users.filter(function(user){
+		return user.MSV.toLowerCase().indexOf(q.toLowerCase()) >= 0;
+	});	
 		res.render('list', {
 			users: searching
 		});
 
-	})
 	
 }
-module.exports.view = function(req, res){
+module.exports.view = async function(req, res){
 	var _id = req.params._id;
-	usersModel.find().exec(function(err, user){
-		var user = user.filter(function(u){
-			return u._id == _id;
-		});
-		res.render('viewUser', {user :user[0]});
-	});
+	var list = await usersModel.find();
+	var user = list.filter(function(u){
+		return u._id == _id;
+	})
+	res.render('viewUser', {user: user[0]});
 	
 }
 module.exports.create = function(req, res){
@@ -53,29 +42,24 @@ module.exports.removeUser = function(req, res){
 		res.redirect('/users');
 	})
 }
-module.exports.modifyUser = function(req, res){
+module.exports.modifyUser = async function(req, res){
 	var _id = req.params._id;
-	usersModel.find().exec(function(err, user){
-		var user = user.filter(function(u){
-			return u._id == _id;
-		});
-		res.render('modifyUser', {user :user[0]});
+	var user = await usersModel.find();
+	user = user.filter(function(u){
+		return u._id == _id;
 	});
-
+	res.render('modifyUser', {user :user[0]});
 }
 
-module.exports.modifyUserPost = function(req, res){
+module.exports.modifyUserPost = async function(req, res){
 	var modifyUser = req.body;
 	var _id = req.params._id;
-	usersModel.find().exec(function(err, user){
-		var user = user.filter(function(u){
-			return u._id == _id;
-		});
-		usersModel.update(user[0], modifyUser).exec(function(err, result){
-			
-		});
+	var user = await usersModel.find();
+	user = user.filter(function(u){
+		return u._id == _id;
 	});
-
-	res.redirect('/users/view/' + _id);
+	usersModel.update(user[0], modifyUser).exec(function(err, result){	
+	});
+	
 	res.redirect('/users/view/' + _id);
 }
