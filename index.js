@@ -7,7 +7,13 @@ var authRouter = require('./router/auth.login.js');
 var validateLogin = require('./validate/middlewareLogin.js');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/expressManager', { useNewUrlParser: true });
+
+
+mongoose.connect(
+	'mongodb+srv://luankoy2000:luankoy@000@expressmanager-zwsha.mongodb.net/test?retryWrites=true'
+	,{ useNewUrlParser: true}
+	);
+// mongoose.connect('mongodb://localhost/expressManager', { useNewUrlParser: true });
 
 var port = process.env.PORT || 3000;
 
