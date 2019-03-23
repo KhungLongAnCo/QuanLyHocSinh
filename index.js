@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 
 
 mongoose.connect(
-	'mongodb+srv://luankoy2000:luankoy@000@expressmanager-zwsha.mongodb.net/test?retryWrites=true'
+	'mongodb+srv://luankoy:luankoy@expressmanager-zwsha.mongodb.net/test?retryWrites=true'
 	,{ useNewUrlParser: true}
 	);
 // mongoose.connect('mongodb://localhost/expressManager', { useNewUrlParser: true });
