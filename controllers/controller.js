@@ -2,7 +2,6 @@
 var usersModel = require('../models/users.model.js');
 module.exports.list = async function(req, res){
 	var user = await usersModel.find()
-	user = user.slice(1, user.length);
 		res.render('list', {
 			users: user
 		})

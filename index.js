@@ -13,7 +13,7 @@ mongoose.connect(
 	'mongodb+srv://luankoy:luankoy@expressmanager-zwsha.mongodb.net/test?retryWrites=true'
 	,{ useNewUrlParser: true}
 	);
-// mongoose.connect('mongodb://localhost/expressManager', { useNewUrlParser: true });
+
 
 var port = process.env.PORT || 3000;
 
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views', 'views');
 app.use("/users", 
-	validateLogin.bin,
+	// validateLogin.bin,
 	userRouter
 	);
 app.use('/auth', authRouter);
