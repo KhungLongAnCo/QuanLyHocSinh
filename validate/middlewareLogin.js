@@ -4,7 +4,6 @@ var userModel = require('../models/users.model.js');
 module.exports.bin = async function(req, res, next){
 	// var user = db.get('users').find({id: req.signedCookies.login}).value();
 	var users = await userModel.find();
-		console.log(users);
 		var user = users.filter(function(u){
 			return u._id == req.signedCookies.login;
 		})

@@ -4,7 +4,6 @@ module.exports.Login = async function(req, res, next){
 	var error = [];
 	var user = req.body;
 	var listUsers = await UserModel.find();
-	// console.log(listUsers);
 	var combine = await  listUsers.filter(function(u){
 		return u.email == user.email && u.password == user.password;
 	});
@@ -26,11 +25,6 @@ module.exports.Login = async function(req, res, next){
 		res.redirect('/users');
 		next();
 	}
-
-		// console.log(user);
-		// console.log(combine);
-		
-	// var combine = db.get('users').find({email: user.email}).value();
 	
 	
 }

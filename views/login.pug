@@ -12,8 +12,13 @@ head
   if(error)
     each err in error
       .alert.alert-danger= error
+  
+  hr
   form(action='/auth/login', method='POST', role='form')
-    legend Create New Students
+    h1 Login
+    hr 
+    i Mk: luankoy2k@gmail.com
+    i Password: 123
     .form-group
       label(for='') Name
       input.form-control(type='email', name='email' value= value ? value.email : '')
