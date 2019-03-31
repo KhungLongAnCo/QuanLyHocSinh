@@ -19,11 +19,11 @@ nav.navbar.navbar-inverse(role='navigation')
     .collapse.navbar-collapse.navbar-ex1-collapse
       ul.nav.navbar-nav
         li.active
-          a(href='/') Home
+          a(href='/') Trang chủ
         li
-          a(href='/users') List Students
+          a(href='/users') Danh sách học sinh
         li
-          a(href='/users/create') New Student
+          a(href='/users/create') Tạo Học sinh 
       ul.nav.navbar-nav.navbar-right
         li
           a(href="/auth/login" )
@@ -34,9 +34,11 @@ nav.navbar.navbar-inverse(role='navigation')
   form(action='/users/search', method='get', role='form' )
     legend Search
     .form-group.col-md-6
-      input.form-control(type='text', name='q', placeholder='Mã Sinh Viên')
-    button.btn.btn-primary(type='submit') 
-      i.fas.fa-search.fa-1x
+      .col-xs-9.col-sm-9.col-md-9.col-lg-9
+        input.form-control(type='text', name='q', placeholder='Mã Sinh Viên')
+      .col-xs-3.col-sm-3.col-md-3.col-lg-3
+        button.btn.btn-primary(type='submit') 
+         i.fas.fa-search.fa-1x
 .col-md-6
 table.table.table-hover
   thead

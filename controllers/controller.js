@@ -1,7 +1,10 @@
 
 var usersModel = require('../models/users.model.js');
 module.exports.list = async function(req, res){
-	var user = await usersModel.find()
+	var user = await usersModel.find();
+	user = user.filter(function(u){
+		return u.email != 'luankoy2k@gmail.com';
+	});
 		res.render('list', {
 			users: user
 		})
@@ -9,6 +12,9 @@ module.exports.list = async function(req, res){
 module.exports.search = async function(req, res){
 	var q = req.query.q;
 	var users = await usersModel.find();
+	users = users.filter(function(u){
+		return u.email != 'luankoy2k@gmail.com';
+	});
 	var searching = users.filter(function(user){
 		return user.MSV.toLowerCase().indexOf(q.toLowerCase()) >= 0;
 	});	

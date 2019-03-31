@@ -5,11 +5,9 @@ module.exports.Login = async function(req, res, next){
 	var user = req.body;
 	var listUsers = await UserModel.find();
 	// console.log(listUsers);
-	var combine = await listUsers.filter(function(u){
+	var combine = await  listUsers.filter(function(u){
 		return u.email == user.email && u.password == user.password;
 	});
-	// console.log(combine);
-	// 
 	combine = combine[0];
 	if(!combine){
 		error.push('ko có tài khoản này');
