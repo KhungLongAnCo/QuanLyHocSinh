@@ -1,20 +1,16 @@
-module.exports.validate = function(req, res, next){
+module.exports.validate = async function(req, res, next){
 	var usersModel = require('../models/users.model.js');
 	var newUser = req.body;
 	var error = [];
 	var reglarPhone = /^([0-9]{9,10})$/;
 	var reglarMSV = /^([0-9a-zA-Z]{4,10})$/;
-	var test ='';
-	usersModel.find().exec(function(err, user){
-		test = user.filter(function(u){
+	var test = await usersModel.find();
+	var testMSV = await test.filter(function(u){
 			return u.MSV === newUser.MSV;
-		})
-
 	})
-	if(test){
-		console.log('lol');
-		error.push('Đã tồn tại Mã sinh viên này');
-	}
+	// if(testMSV){
+	// 	error.push('Đã tồn tại Mã sinh viên này');
+	// }
 	if(!newUser.name){
 		error.push('Không được để tên trống');		
 	}
