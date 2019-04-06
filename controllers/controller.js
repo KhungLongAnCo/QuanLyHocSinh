@@ -59,12 +59,16 @@ module.exports.modifyUser = async function(req, res){
 module.exports.modifyUserPost = async function(req, res){
 	var modifyUser = req.body;
 	var _id = req.params._id;
+	
 	var user = await usersModel.find();
 	user = user.filter(function(u){
 		return u._id == _id;
 	});
 	usersModel.update(user[0], modifyUser).exec(function(err, result){	
 	});
-	
+	console.log(_id);
+	if(_id){
+		res.redirect('/users');
+	}
 	res.redirect('/users/view/' + _id);
 }

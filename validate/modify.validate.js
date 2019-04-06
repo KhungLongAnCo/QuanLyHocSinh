@@ -4,6 +4,10 @@ module.exports.modify = function(req, res, next){
 	var reglarPhone = /^([0-9]{9,10})$/;
 	var reglarMSV = /^([0-9a-zA-Z]{4,10})$/;
 	var user = req.body;
+	var _id = req.params._id;
+	if(!_id){
+		res.redirect('/users');
+	}
 	if(!user.name){
 		error.push('Không được để tên trống');		
 	}
